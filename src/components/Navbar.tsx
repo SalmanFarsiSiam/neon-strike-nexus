@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, User, Settings, LogOut } from "lucide-react";
+import { Menu, X, User, Settings, LogOut, Home, HelpCircle, Download, Map, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -10,6 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,36 +22,38 @@ const Navbar = () => {
   };
 
   const navItems = [
-    { name: "Home", path: "/" },
-    { name: "How To Setup", path: "/setup" },
-    { name: "Downloads", path: "/downloads" },
-    { name: "Maps", path: "/maps" },
-    { name: "FAQ", path: "/faq" },
-    { name: "About", path: "/about" },
+    { name: "Home", path: "/", icon: <Home size={18} /> },
+    { name: "How To Setup", path: "/setup", icon: <HelpCircle size={18} /> },
+    { name: "Downloads", path: "/downloads", icon: <Download size={18} /> },
+    { name: "Maps", path: "/maps", icon: <Map size={18} /> },
+    { name: "FAQ", path: "/faq", icon: <Info size={18} /> },
+    { name: "About", path: "/about", icon: <Info size={18} /> },
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-navy-dark/80 backdrop-blur-md border-b border-white/10 px-4 md:px-8 py-3">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-white/5 py-3">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center">
           <div className="text-neon-blue text-3xl font-bold">
-            <span className="text-white">M</span>
-            <span className="text-neon-blue animate-glow">PA</span>
+            <span>MPA</span>
           </div>
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center justify-center space-x-1">
+        <div className="hidden md:flex items-center justify-center bg-navy-dark/80 backdrop-blur-md rounded-full px-6 py-2 border border-white/10">
           {navItems.map((item) => (
             <Link
               key={item.name}
               to={item.path}
-              className={`nav-link ${
-                location.pathname === item.path ? "active" : ""
+              className={`flex items-center gap-1 px-4 py-1 rounded-full transition-colors ${
+                location.pathname === item.path
+                  ? "text-neon-blue"
+                  : "text-gray-300 hover:text-white"
               }`}
             >
-              {item.name}
+              {item.icon}
+              <span className="ml-1">{item.name}</span>
             </Link>
           ))}
         </div>
@@ -62,16 +65,16 @@ const Navbar = () => {
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="relative h-10 w-10 rounded-full">
                   <div className="flex items-center gap-2">
-                    <div className="h-8 w-8 rounded-full bg-neon-blue/20 border border-neon-blue/40 flex items-center justify-center text-white">
-                      U
-                    </div>
-                    <span className="hidden lg:inline-block text-sm text-gray-300">
-                      User123
+                    <span className="text-sm text-gray-300 mr-2">
+                      Username
                     </span>
+                    <Avatar className="h-8 w-8 bg-navy-light border border-neon-blue/30">
+                      <AvatarFallback className="bg-navy-light text-neon-blue">U</AvatarFallback>
+                    </Avatar>
                   </div>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56">
+              <DropdownMenuContent align="end" className="w-56 bg-navy-dark border border-white/10">
                 <DropdownMenuItem className="cursor-pointer">
                   <User className="mr-2 h-4 w-4" />
                   <span>Profile</span>
@@ -91,22 +94,18 @@ const Navbar = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <div className="flex gap-2">
+            <div className="flex gap-2 items-center">
               <Button 
                 variant="ghost" 
                 size="sm" 
                 className="text-gray-300 hover:text-white"
                 onClick={() => setIsLoggedIn(true)}
               >
-                Login
+                Username
               </Button>
-              <Button 
-                variant="default" 
-                size="sm" 
-                className="bg-neon-blue hover:bg-neon-blue/80 text-navy-dark"
-              >
-                Register
-              </Button>
+              <Avatar className="h-8 w-8 bg-navy-light border border-neon-blue/30">
+                <AvatarFallback className="bg-navy-light text-neon-blue">U</AvatarFallback>
+              </Avatar>
             </div>
           )}
         </div>
@@ -128,11 +127,14 @@ const Navbar = () => {
               <Link
                 key={item.name}
                 to={item.path}
-                className={`nav-link py-3 ${
-                  location.pathname === item.path ? "active" : ""
+                className={`flex items-center gap-2 py-3 px-4 rounded-md ${
+                  location.pathname === item.path 
+                    ? "bg-navy-light text-neon-blue" 
+                    : "text-gray-300 hover:text-white"
                 }`}
                 onClick={() => setIsOpen(false)}
               >
+                {item.icon}
                 {item.name}
               </Link>
             ))}
@@ -141,16 +143,16 @@ const Navbar = () => {
             <div className="pt-4 border-t border-white/10 mt-2">
               {isLoggedIn ? (
                 <div className="flex flex-col space-y-2">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="h-8 w-8 rounded-full bg-neon-blue/20 border border-neon-blue/40 flex items-center justify-center text-white">
-                      U
-                    </div>
-                    <span className="text-sm text-gray-300">User123</span>
+                  <div className="flex items-center gap-3 mb-2 px-4">
+                    <Avatar className="h-8 w-8 bg-navy-light border border-neon-blue/30">
+                      <AvatarFallback className="bg-navy-light text-neon-blue">U</AvatarFallback>
+                    </Avatar>
+                    <span className="text-sm text-gray-300">Username</span>
                   </div>
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="justify-start px-1 text-gray-300"
+                    className="justify-start px-4 text-gray-300"
                     onClick={() => {}}
                   >
                     <User className="mr-2 h-4 w-4" />
@@ -159,7 +161,7 @@ const Navbar = () => {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="justify-start px-1 text-gray-300"
+                    className="justify-start px-4 text-gray-300"
                     onClick={() => {}}
                   >
                     <Settings className="mr-2 h-4 w-4" />
@@ -168,7 +170,7 @@ const Navbar = () => {
                   <Button
                     variant="destructive"
                     size="sm"
-                    className="justify-start px-1 text-gray-300"
+                    className="justify-start px-4 mt-2"
                     onClick={() => setIsLoggedIn(false)}
                   >
                     <LogOut className="mr-2 h-4 w-4" />
@@ -176,22 +178,18 @@ const Navbar = () => {
                   </Button>
                 </div>
               ) : (
-                <div className="flex gap-2">
+                <div className="flex items-center gap-3 px-4">
                   <Button 
                     variant="ghost" 
                     size="sm" 
                     className="text-gray-300 hover:text-white"
                     onClick={() => setIsLoggedIn(true)}
                   >
-                    Login
+                    Username
                   </Button>
-                  <Button 
-                    variant="default" 
-                    size="sm" 
-                    className="bg-neon-blue hover:bg-neon-blue/80 text-navy-dark"
-                  >
-                    Register
-                  </Button>
+                  <Avatar className="h-8 w-8 bg-navy-light border border-neon-blue/30">
+                    <AvatarFallback className="bg-navy-light text-neon-blue">U</AvatarFallback>
+                  </Avatar>
                 </div>
               )}
             </div>
