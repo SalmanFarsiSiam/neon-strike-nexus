@@ -50,7 +50,7 @@
     @apply bg-[#121212] text-foreground antialiased;
     background-image: 
       linear-gradient(to bottom, rgba(18, 18, 18, 0.95), rgba(18, 18, 18, 0.98)),
-      url('/public/lovable-uploads/80782db6-d02c-43e4-b676-c55adf0ff196.png');
+      url('https://igi-2-mpa-official.onrender.com/images/Web.png');
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
