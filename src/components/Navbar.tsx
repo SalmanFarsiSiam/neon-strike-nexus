@@ -31,7 +31,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-white/5 py-3">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/10 backdrop-blur-lg border-b border-white/20 py-3">
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center">
@@ -41,7 +41,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center justify-center bg-navy-dark/80 backdrop-blur-md rounded-full px-6 py-2 border border-white/10">
+        <div className="hidden md:flex items-center justify-center backdrop-blur-md rounded-full px-6 py-2 border border-white/10">
           {navItems.map((item) => (
             <Link
               key={item.name}
@@ -68,13 +68,13 @@ const Navbar = () => {
                     <span className="text-sm text-gray-300 mr-2">
                       Username
                     </span>
-                    <Avatar className="h-8 w-8 bg-navy-light border border-neon-blue/30">
-                      <AvatarFallback className="bg-navy-light text-neon-blue">U</AvatarFallback>
+                    <Avatar className="h-8 w-8 bg-transparent border border-neon-blue/30">
+                      <AvatarFallback className="bg-transparent text-neon-blue">U</AvatarFallback>
                     </Avatar>
                   </div>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56 bg-navy-dark border border-white/10">
+              <DropdownMenuContent align="end" className="w-56 bg-white/20 backdrop-blur-xl border border-white/20">
                 <DropdownMenuItem className="cursor-pointer">
                   <User className="mr-2 h-4 w-4" />
                   <span>Profile</span>
@@ -96,16 +96,21 @@ const Navbar = () => {
           ) : (
             <div className="flex gap-2 items-center">
               <Button 
-                variant="ghost" 
+                variant="outline" 
                 size="sm" 
-                className="text-gray-300 hover:text-white"
+                className="border-white/20 bg-white/10 backdrop-blur-md text-gray-300 hover:text-white hover:bg-white/20"
                 onClick={() => setIsLoggedIn(true)}
               >
-                Username
+                Login
               </Button>
-              <Avatar className="h-8 w-8 bg-navy-light border border-neon-blue/30">
-                <AvatarFallback className="bg-navy-light text-neon-blue">U</AvatarFallback>
-              </Avatar>
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="text-neon-blue hover:text-neon-blue hover:bg-neon-blue/10"
+                onClick={() => setIsLoggedIn(true)}
+              >
+                Register
+              </Button>
             </div>
           )}
         </div>
@@ -121,7 +126,7 @@ const Navbar = () => {
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <div className="md:hidden p-4 bg-navy-dark border-t border-white/10">
+        <div className="md:hidden p-4 bg-white/10 backdrop-blur-lg border-t border-white/10">
           <div className="flex flex-col space-y-2">
             {navItems.map((item) => (
               <Link
@@ -129,7 +134,7 @@ const Navbar = () => {
                 to={item.path}
                 className={`flex items-center gap-2 py-3 px-4 rounded-md ${
                   location.pathname === item.path 
-                    ? "bg-navy-light text-neon-blue" 
+                    ? "bg-white/10 text-neon-blue" 
                     : "text-gray-300 hover:text-white"
                 }`}
                 onClick={() => setIsOpen(false)}
@@ -144,8 +149,8 @@ const Navbar = () => {
               {isLoggedIn ? (
                 <div className="flex flex-col space-y-2">
                   <div className="flex items-center gap-3 mb-2 px-4">
-                    <Avatar className="h-8 w-8 bg-navy-light border border-neon-blue/30">
-                      <AvatarFallback className="bg-navy-light text-neon-blue">U</AvatarFallback>
+                    <Avatar className="h-8 w-8 bg-transparent border border-neon-blue/30">
+                      <AvatarFallback className="bg-transparent text-neon-blue">U</AvatarFallback>
                     </Avatar>
                     <span className="text-sm text-gray-300">Username</span>
                   </div>
@@ -178,18 +183,23 @@ const Navbar = () => {
                   </Button>
                 </div>
               ) : (
-                <div className="flex items-center gap-3 px-4">
+                <div className="flex flex-col gap-2 px-4">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="justify-center border-white/20 bg-white/10 backdrop-blur-md text-gray-300 hover:text-white w-full"
+                    onClick={() => setIsLoggedIn(true)}
+                  >
+                    Login
+                  </Button>
                   <Button 
                     variant="ghost" 
                     size="sm" 
-                    className="text-gray-300 hover:text-white"
+                    className="justify-center text-neon-blue hover:text-neon-blue hover:bg-neon-blue/10 w-full"
                     onClick={() => setIsLoggedIn(true)}
                   >
-                    Username
+                    Register
                   </Button>
-                  <Avatar className="h-8 w-8 bg-navy-light border border-neon-blue/30">
-                    <AvatarFallback className="bg-navy-light text-neon-blue">U</AvatarFallback>
-                  </Avatar>
                 </div>
               )}
             </div>

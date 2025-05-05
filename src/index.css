@@ -7,32 +7,32 @@
 
 @layer base {
   :root {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
+    --background: 0 0% 7%;
+    --foreground: 0 0% 98%;
 
-    --card: 222 47% 11%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 9%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 222 47% 11%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 9%;
+    --popover-foreground: 0 0% 98%;
 
     --primary: 196 100% 50%;
-    --primary-foreground: 222 47% 11%;
+    --primary-foreground: 0 0% 9%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
 
     --accent: 196 100% 50%;
-    --accent-foreground: 210 40% 98%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
     --ring: 196 100% 50%;
     
     --radius: 0.75rem;
@@ -47,9 +47,9 @@
   }
   
   body {
-    @apply bg-navy text-foreground antialiased;
+    @apply bg-[#121212] text-foreground antialiased;
     background-image: 
-      linear-gradient(to bottom, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.98)),
+      linear-gradient(to bottom, rgba(18, 18, 18, 0.95), rgba(18, 18, 18, 0.98)),
       url('/public/lovable-uploads/80782db6-d02c-43e4-b676-c55adf0ff196.png');
     background-attachment: fixed;
     background-size: cover;
@@ -59,7 +59,7 @@
 
 @layer components {
   .glass-card {
-    @apply bg-navy-light/40 backdrop-blur-md border border-white/10 shadow-lg;
+    @apply bg-white/10 backdrop-blur-md border border-white/10 shadow-lg;
   }
   
   .glow-text {
@@ -96,7 +96,7 @@
   }
 
   .neon-card {
-    @apply rounded-xl border border-neon-blue/20 bg-navy-light/80 backdrop-blur-sm shadow-lg 
+    @apply rounded-xl border border-neon-blue/20 bg-white/5 backdrop-blur-sm shadow-lg 
            hover:border-neon-blue/40 hover:shadow-[0_0_15px_rgba(0,191,255,0.3)] transition-all duration-300;
   }
 }

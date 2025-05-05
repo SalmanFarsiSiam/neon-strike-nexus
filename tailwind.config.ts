@@ -58,9 +58,9 @@ export default {
 				},
 				// Custom colors for our theme
 				navy: {
-					DEFAULT: '#0F172A',
-					dark: '#0B1222',
-					light: '#1E293B',
+					DEFAULT: '#121212',
+					dark: '#0A0A0A',
+					light: '#1E1E1E',
 				},
 				neon: {
 					blue: '#00BFFF',
