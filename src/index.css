@@ -63,7 +63,7 @@
   }
 
   .bg-white\/10 {
-    background-color: #fffff000;
+    background-color: #fffff000 !important;
   }
   
   .glow-text {
