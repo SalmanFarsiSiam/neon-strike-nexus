@@ -61,6 +61,10 @@
   .glass-card {
     @apply bg-white/10 backdrop-blur-md border border-white/10 shadow-lg;
   }
+
+  .bg-white\/10 {
+    background-color: #ffffff00;
+  }
   
   .glow-text {
     @apply text-neon-blue animate-glow;
