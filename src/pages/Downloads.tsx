@@ -2,9 +2,12 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useState } from "react";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 const DownloadsPage = () => {
+  const [activeTab, setActiveTab] = useState("launcher");
+
   const launcherVersions = [
     {
       version: "v9.3.0",
@@ -60,84 +63,104 @@ const DownloadsPage = () => {
           </p>
         </div>
 
-        <Tabs defaultValue="launcher" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 mb-8">
-            <TabsTrigger value="launcher" className="text-lg">Launcher</TabsTrigger>
-            <TabsTrigger value="tools" className="text-lg">Tools</TabsTrigger>
-          </TabsList>
-          
-          <TabsContent value="launcher">
-            <div className="space-y-6">
-              {launcherVersions.map((launcher, index) => (
-                <Card key={index} className={launcher.isLatest ? "neon-card border-neon-blue" : "neon-card"}>
-                  <CardHeader>
-                    <div className="flex items-center justify-between">
-                      <CardTitle className="text-xl text-white">
-                        MPA Launcher {launcher.version}
-                        {launcher.isLatest && (
-                          <span className="ml-3 text-xs bg-neon-blue/20 text-neon-blue px-2 py-1 rounded-full">
-                            Latest
-                          </span>
-                        )}
-                      </CardTitle>
-                      <div className="text-sm text-gray-400">
-                        Released: {launcher.date}
-                      </div>
-                    </div>
-                    <CardDescription className="text-gray-400">
-                      {launcher.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardFooter className="flex items-center justify-between">
-                    <div className="text-sm text-gray-400">
-                      Size: {launcher.size}
-                    </div>
-                    <Button 
-                      className={launcher.isLatest ? "neon-button" : "bg-secondary hover:bg-secondary/80"}
-                    >
-                      <Download className="mr-2 h-4 w-4" />
-                      Download
-                    </Button>
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="tools">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {tools.map((tool, index) => (
-                <Card key={index} className="neon-card">
-                  <CardHeader>
-                    <CardTitle className="text-lg text-white">
-                      {tool.name}
+        <div className="flex justify-center mb-10">
+          <div className="inline-block p-1 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
+            <ToggleGroup type="single" value={activeTab} onValueChange={(value) => value && setActiveTab(value)}>
+              <ToggleGroupItem 
+                value="launcher"
+                className={`px-8 py-3 rounded-full text-base font-medium transition-all ${
+                  activeTab === "launcher" 
+                    ? "bg-neon-blue text-black shadow-[0_0_15px_rgba(0,191,255,0.5)]" 
+                    : "text-gray-300 hover:text-white"
+                }`}
+              >
+                Launcher
+              </ToggleGroupItem>
+              <ToggleGroupItem 
+                value="tools"
+                className={`px-8 py-3 rounded-full text-base font-medium transition-all ${
+                  activeTab === "tools" 
+                    ? "bg-neon-blue text-black shadow-[0_0_15px_rgba(0,191,255,0.5)]" 
+                    : "text-gray-300 hover:text-white"
+                }`}
+              >
+                Tools
+              </ToggleGroupItem>
+            </ToggleGroup>
+          </div>
+        </div>
+        
+        {activeTab === "launcher" && (
+          <div className="space-y-6">
+            {launcherVersions.map((launcher, index) => (
+              <Card key={index} className={launcher.isLatest ? "neon-card border-neon-blue" : "neon-card"}>
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-xl text-white">
+                      MPA Launcher {launcher.version}
+                      {launcher.isLatest && (
+                        <span className="ml-3 text-xs bg-neon-blue/20 text-neon-blue px-2 py-1 rounded-full">
+                          Latest
+                        </span>
+                      )}
                     </CardTitle>
-                    <div className="text-xs text-gray-400">
-                      Version: {tool.version}
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-gray-400">
-                      {tool.description}
-                    </CardDescription>
-                  </CardContent>
-                  <CardFooter className="flex items-center justify-between">
                     <div className="text-sm text-gray-400">
-                      Size: {tool.size}
+                      Released: {launcher.date}
                     </div>
-                    <Button 
-                      variant="secondary" 
-                      size="sm"
-                    >
-                      <Download className="mr-2 h-4 w-4" />
-                      Download
-                    </Button>
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
-          </TabsContent>
-        </Tabs>
+                  </div>
+                  <CardDescription className="text-gray-400">
+                    {launcher.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardFooter className="flex items-center justify-between">
+                  <div className="text-sm text-gray-400">
+                    Size: {launcher.size}
+                  </div>
+                  <Button 
+                    className={launcher.isLatest ? "neon-button" : "bg-secondary hover:bg-secondary/80"}
+                  >
+                    <Download className="mr-2 h-4 w-4" />
+                    Download
+                  </Button>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+        )}
+        
+        {activeTab === "tools" && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {tools.map((tool, index) => (
+              <Card key={index} className="neon-card">
+                <CardHeader>
+                  <CardTitle className="text-lg text-white">
+                    {tool.name}
+                  </CardTitle>
+                  <div className="text-xs text-gray-400">
+                    Version: {tool.version}
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-gray-400">
+                    {tool.description}
+                  </CardDescription>
+                </CardContent>
+                <CardFooter className="flex items-center justify-between">
+                  <div className="text-sm text-gray-400">
+                    Size: {tool.size}
+                  </div>
+                  <Button 
+                    variant="secondary" 
+                    size="sm"
+                  >
+                    <Download className="mr-2 h-4 w-4" />
+                    Download
+                  </Button>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+        )}
 
         <div className="mt-16">
           <Card className="neon-card p-6">

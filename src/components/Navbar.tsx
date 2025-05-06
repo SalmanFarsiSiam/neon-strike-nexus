@@ -1,20 +1,10 @@
 
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, User, Settings, LogOut, Home, HelpCircle, Download, Map, Info } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Menu, X, Home, HelpCircle, Download, Map, Info } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const location = useLocation();
 
   const toggleMenu = () => {
@@ -58,63 +48,6 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Auth Section */}
-        <div className="hidden md:flex items-center">
-          {isLoggedIn ? (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="relative h-10 w-10 rounded-full">
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm text-gray-300 mr-2">
-                      Username
-                    </span>
-                    <Avatar className="h-8 w-8 bg-transparent border border-neon-blue/30">
-                      <AvatarFallback className="bg-transparent text-neon-blue">U</AvatarFallback>
-                    </Avatar>
-                  </div>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56 bg-white/20 backdrop-blur-xl border border-white/20">
-                <DropdownMenuItem className="cursor-pointer">
-                  <User className="mr-2 h-4 w-4" />
-                  <span>Profile</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer">
-                  <Settings className="mr-2 h-4 w-4" />
-                  <span>Settings</span>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem 
-                  className="cursor-pointer"
-                  onClick={() => setIsLoggedIn(false)}
-                >
-                  <LogOut className="mr-2 h-4 w-4" />
-                  <span>Logout</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          ) : (
-            <div className="flex gap-2 items-center">
-              <Button 
-                variant="outline" 
-                size="sm" 
-                className="border-white/20 bg-white/10 backdrop-blur-md text-gray-300 hover:text-white hover:bg-white/20"
-                onClick={() => setIsLoggedIn(true)}
-              >
-                Login
-              </Button>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                className="text-neon-blue hover:text-neon-blue hover:bg-neon-blue/10"
-                onClick={() => setIsLoggedIn(true)}
-              >
-                Register
-              </Button>
-            </div>
-          )}
-        </div>
-
         {/* Mobile menu button */}
         <button
           onClick={toggleMenu}
@@ -143,66 +76,6 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
-            
-            {/* Mobile Auth */}
-            <div className="pt-4 border-t border-white/10 mt-2">
-              {isLoggedIn ? (
-                <div className="flex flex-col space-y-2">
-                  <div className="flex items-center gap-3 mb-2 px-4">
-                    <Avatar className="h-8 w-8 bg-transparent border border-neon-blue/30">
-                      <AvatarFallback className="bg-transparent text-neon-blue">U</AvatarFallback>
-                    </Avatar>
-                    <span className="text-sm text-gray-300">Username</span>
-                  </div>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="justify-start px-4 text-gray-300"
-                    onClick={() => {}}
-                  >
-                    <User className="mr-2 h-4 w-4" />
-                    <span>Profile</span>
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="justify-start px-4 text-gray-300"
-                    onClick={() => {}}
-                  >
-                    <Settings className="mr-2 h-4 w-4" />
-                    <span>Settings</span>
-                  </Button>
-                  <Button
-                    variant="destructive"
-                    size="sm"
-                    className="justify-start px-4 mt-2"
-                    onClick={() => setIsLoggedIn(false)}
-                  >
-                    <LogOut className="mr-2 h-4 w-4" />
-                    <span>Logout</span>
-                  </Button>
-                </div>
-              ) : (
-                <div className="flex flex-col gap-2 px-4">
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    className="justify-center border-white/20 bg-white/10 backdrop-blur-md text-gray-300 hover:text-white w-full"
-                    onClick={() => setIsLoggedIn(true)}
-                  >
-                    Login
-                  </Button>
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
-                    className="justify-center text-neon-blue hover:text-neon-blue hover:bg-neon-blue/10 w-full"
-                    onClick={() => setIsLoggedIn(true)}
-                  >
-                    Register
-                  </Button>
-                </div>
-              )}
-            </div>
           </div>
         </div>
       )}
