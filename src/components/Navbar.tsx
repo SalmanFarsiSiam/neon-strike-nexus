@@ -2,22 +2,24 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Home, HelpCircle, Download, Map, Info } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const isMobile = useIsMobile();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
   const navItems = [
-    { name: "Home", path: "/", icon: <Home size={18} /> },
-    { name: "How To Setup", path: "/setup", icon: <HelpCircle size={18} /> },
-    { name: "Downloads", path: "/downloads", icon: <Download size={18} /> },
-    { name: "Maps", path: "/maps", icon: <Map size={18} /> },
-    { name: "FAQ", path: "/faq", icon: <Info size={18} /> },
-    { name: "About", path: "/about", icon: <Info size={18} /> },
+    { name: "Home", path: "/", icon: <Home size={isMobile ? 20 : 18} /> },
+    { name: "How To Setup", path: "/setup", icon: <HelpCircle size={isMobile ? 20 : 18} /> },
+    { name: "Downloads", path: "/downloads", icon: <Download size={isMobile ? 20 : 18} /> },
+    { name: "Maps", path: "/maps", icon: <Map size={isMobile ? 20 : 18} /> },
+    { name: "FAQ", path: "/faq", icon: <Info size={isMobile ? 20 : 18} /> },
+    { name: "About", path: "/about", icon: <Info size={isMobile ? 20 : 18} /> },
   ];
 
   return (
@@ -25,7 +27,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center">
-          <div className="text-neon-blue text-3xl font-bold">
+          <div className="text-neon-blue text-2xl md:text-3xl font-bold">
             <span>MPA</span>
           </div>
         </Link>
@@ -52,30 +54,50 @@ const Navbar = () => {
         <button
           onClick={toggleMenu}
           className="md:hidden text-gray-200 hover:text-white"
+          aria-label="Toggle menu"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation - Enhanced for better mobile experience */}
       {isOpen && (
-        <div className="md:hidden p-4 bg-white/10 backdrop-blur-lg border-t border-white/10">
-          <div className="flex flex-col space-y-2">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.path}
-                className={`flex items-center gap-2 py-3 px-4 rounded-md ${
-                  location.pathname === item.path 
-                    ? "bg-white/10 text-neon-blue" 
-                    : "text-gray-300 hover:text-white"
-                }`}
-                onClick={() => setIsOpen(false)}
-              >
-                {item.icon}
-                {item.name}
+        <div className="md:hidden fixed inset-0 z-50 bg-black/90 backdrop-blur-lg">
+          <div className="flex flex-col h-full">
+            <div className="flex justify-between items-center p-4 border-b border-white/10">
+              <Link to="/" className="flex items-center" onClick={() => setIsOpen(false)}>
+                <div className="text-neon-blue text-2xl font-bold">
+                  <span>MPA</span>
+                </div>
               </Link>
-            ))}
+              <button 
+                onClick={toggleMenu}
+                className="text-gray-200 hover:text-white"
+                aria-label="Close menu"
+              >
+                <X size={24} />
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto p-4">
+              <div className="flex flex-col space-y-4">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.path}
+                    className={`flex items-center gap-3 py-4 px-4 rounded-lg transition-colors ${
+                      location.pathname === item.path 
+                        ? "bg-white/10 text-neon-blue" 
+                        : "text-gray-300 hover:text-white hover:bg-white/5"
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <div className="text-2xl">{item.icon}</div>
+                    <span className="text-lg font-medium">{item.name}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       )}
