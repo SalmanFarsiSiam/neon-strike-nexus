@@ -38,11 +38,11 @@ const Navbar = () => {
             <Link
               key={item.name}
               to={item.path}
-              className={`flex items-center gap-1 px-4 py-1 rounded-full transition-colors ${
+              className={`flex items-center gap-1 px-4 py-1 rounded-full transition-colors relative ${
                 location.pathname === item.path
-                  ? "text-neon-blue"
-                  : "text-gray-300 hover:text-white"
-              }`}
+                  ? "text-neon-blue after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-neon-blue"
+                  : "text-gray-300 hover:text-white hover:after:w-full"
+              } after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-neon-blue after:transition-all after:duration-300`}
             >
               {item.icon}
               <span className="ml-1">{item.name}</span>
@@ -60,9 +60,9 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Navigation - Fixed overlay */}
+      {/* Mobile Navigation - Fixed overlay with higher z-index */}
       {isOpen && (
-        <div className="md:hidden fixed inset-0 z-50 bg-black/90 backdrop-blur-lg">
+        <div className="md:hidden fixed inset-0 z-[100] bg-black/90 backdrop-blur-lg">
           <div className="flex flex-col h-full">
             <div className="flex justify-between items-center p-4 border-b border-white/10">
               <Link to="/" className="flex items-center" onClick={() => setIsOpen(false)}>
@@ -85,11 +85,11 @@ const Navbar = () => {
                   <Link
                     key={item.name}
                     to={item.path}
-                    className={`flex items-center gap-3 py-4 px-4 rounded-lg transition-colors ${
+                    className={`flex items-center gap-3 py-4 px-4 rounded-lg transition-colors relative ${
                       location.pathname === item.path 
-                        ? "bg-white/10 text-neon-blue" 
-                        : "text-gray-300 hover:text-white hover:bg-white/5"
-                    }`}
+                        ? "bg-white/10 text-neon-blue after:absolute after:bottom-0 after:left-4 after:right-4 after:h-0.5 after:bg-neon-blue" 
+                        : "text-gray-300 hover:text-white hover:bg-white/5 hover:after:w-[calc(100%-2rem)]"
+                    } after:absolute after:bottom-0 after:left-4 after:w-0 after:h-0.5 after:bg-neon-blue after:transition-all after:duration-300`}
                     onClick={() => setIsOpen(false)}
                   >
                     <div className="text-2xl">{item.icon}</div>
