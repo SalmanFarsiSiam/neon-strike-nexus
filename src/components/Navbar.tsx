@@ -60,7 +60,7 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Navigation - Enhanced for better mobile experience */}
+      {/* Mobile Navigation - Fixed overlay */}
       {isOpen && (
         <div className="md:hidden fixed inset-0 z-50 bg-black/90 backdrop-blur-lg">
           <div className="flex flex-col h-full">
