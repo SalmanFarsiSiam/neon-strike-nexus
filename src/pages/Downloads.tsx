@@ -1,6 +1,7 @@
+
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Download, Tools } from "lucide-react";
+import { Download, Wrench } from "lucide-react";
 import { useState } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
@@ -83,7 +84,7 @@ const DownloadsPage = () => {
                   : "bg-transparent text-gray-300 hover:text-white hover:bg-neon-blue/10"
               }`}
             >
-              <Tools size={20} />
+              <Wrench size={20} />
               Tools
             </button>
           </div>
