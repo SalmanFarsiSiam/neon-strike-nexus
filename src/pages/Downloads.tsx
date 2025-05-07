@@ -1,7 +1,6 @@
-
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Download } from "lucide-react";
+import { Download, Tools } from "lucide-react";
 import { useState } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
@@ -64,29 +63,29 @@ const DownloadsPage = () => {
         </div>
 
         <div className="flex justify-center mb-10">
-          <div className="inline-block p-1 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
-            <ToggleGroup type="single" value={activeTab} onValueChange={(value) => value && setActiveTab(value)}>
-              <ToggleGroupItem 
-                value="launcher"
-                className={`px-8 py-3 rounded-full text-base font-medium transition-all ${
-                  activeTab === "launcher" 
-                    ? "bg-neon-blue text-black shadow-[0_0_15px_rgba(0,191,255,0.5)]" 
-                    : "text-gray-300 hover:text-white"
-                }`}
-              >
-                Launcher
-              </ToggleGroupItem>
-              <ToggleGroupItem 
-                value="tools"
-                className={`px-8 py-3 rounded-full text-base font-medium transition-all ${
-                  activeTab === "tools" 
-                    ? "bg-neon-blue text-black shadow-[0_0_15px_rgba(0,191,255,0.5)]" 
-                    : "text-gray-300 hover:text-white"
-                }`}
-              >
-                Tools
-              </ToggleGroupItem>
-            </ToggleGroup>
+          <div className="inline-flex rounded-md overflow-hidden border border-neon-blue/30">
+            <button
+              onClick={() => setActiveTab("launcher")}
+              className={`flex items-center gap-2 px-8 py-3 text-base font-medium transition-all ${
+                activeTab === "launcher" 
+                  ? "bg-neon-blue text-black shadow-[0_0_15px_rgba(0,191,255,0.5)]" 
+                  : "bg-transparent text-gray-300 hover:text-white hover:bg-neon-blue/10"
+              }`}
+            >
+              <Download size={20} />
+              Launcher
+            </button>
+            <button
+              onClick={() => setActiveTab("tools")}
+              className={`flex items-center gap-2 px-8 py-3 text-base font-medium transition-all ${
+                activeTab === "tools" 
+                  ? "bg-neon-blue text-black shadow-[0_0_15px_rgba(0,191,255,0.5)]" 
+                  : "bg-transparent text-gray-300 hover:text-white hover:bg-neon-blue/10"
+              }`}
+            >
+              <Tools size={20} />
+              Tools
+            </button>
           </div>
         </div>
         

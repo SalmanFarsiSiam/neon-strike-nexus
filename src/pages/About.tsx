@@ -84,7 +84,7 @@ const AboutPage = () => {
         </div>
 
         <section className="mb-16">
-          <div className="bg-navy-light/30 backdrop-blur-md border border-white/10 rounded-2xl p-8">
+          <div className="bg-navy-light/30 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:border-neon-blue/40 hover:shadow-[0_0_15px_rgba(0,191,255,0.3)] transition-all duration-300">
             <h2 className="text-2xl font-bold text-white mb-4">Our Mission</h2>
             <p className="text-gray-400 mb-6">
               MPA Launcher was created with a simple mission: to breathe new life into IGI 2: Covert Strike multiplayer. We believe that classic games deserve to live on, especially when they offer unique gameplay experiences that modern games often lack. Our team is dedicated to preserving and enhancing the IGI 2 multiplayer experience for both veterans and newcomers alike.
