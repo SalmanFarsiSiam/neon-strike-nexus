@@ -100,7 +100,7 @@ img {
   z-index: 50;
   background-color: rgba(0, 0, 0, 0);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding: 0.75rem 0;
 }
 
