@@ -192,6 +192,79 @@ img {
   color: var(--neon-blue);
 }
 
+/* Search functionality */
+.search-container {
+  position: relative;
+  margin-left: auto;
+  margin-right: 1rem;
+}
+
+.search-input {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  padding: 0.5rem 1rem 0.5rem 2.5rem;
+  color: white;
+  width: 200px;
+  font-size: 0.875rem;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 0 2px rgba(0, 191, 255, 0.2);
+  width: 300px;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 0.75rem;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.search-results {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
+  background-color: var(--popover);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  z-index: 50;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.search-result-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  transition: background-color 0.3s;
+}
+
+.search-result-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.search-result-title {
+  color: white;
+}
+
+.search-result-arrow {
+  color: var(--neon-blue);
+}
+
+.search-no-results {
+  padding: 0.75rem 1rem;
+  color: var(--muted-foreground);
+  text-align: center;
+}
+
 /* Hero Section */
 .hero {
   position: relative;
@@ -341,6 +414,8 @@ img {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* Cards */
@@ -351,6 +426,7 @@ img {
   backdrop-filter: blur(8px);
   transition: all 0.3s;
   overflow: hidden;
+  max-width: 100%;
 }
 
 .neon-card:hover {
@@ -488,10 +564,9 @@ img {
   padding: 0.75rem 2rem;
   background: transparent;
   color: #d1d1d1;
-  border: none;
+  border: 1px solid rgba(255,255,255,0.2);
   cursor: pointer;
   transition: all 0.3s;
-  border-radius: 0;
 }
 
 .tab-button:first-child {
@@ -689,10 +764,6 @@ img {
   color: #a6a6a6;
 }
 
-.accordion-button.active + .accordion-content {
-  display: block;
-}
-
 .more-questions {
   margin-top: 4rem;
   text-align: center;
@@ -822,6 +893,7 @@ img {
   margin-bottom: 0;
 }
 
+/* Team grid - restored to individual cards */
 .team-grid {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -831,6 +903,17 @@ img {
 
 .team-member {
   text-align: center;
+  border: 1px solid rgba(0, 191, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s;
+}
+
+.team-member:hover {
+  border-color: rgba(0, 191, 255, 0.4);
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.3);
 }
 
 .team-avatar {
@@ -862,6 +945,71 @@ img {
 }
 
 .team-bio {
+  font-size: 0.875rem;
+  color: #a6a6a6;
+}
+
+/* Journey timeline - restored */
+.journey-timeline {
+  position: relative;
+  padding: 2rem 0;
+}
+
+.journey-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, var(--neon-blue), transparent);
+  transform: translateX(-50%);
+}
+
+.journey-event {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.journey-event:last-child {
+  margin-bottom: 0;
+}
+
+.journey-date {
+  width: 80px;
+  text-align: right;
+  padding-right: 1.5rem;
+  font-weight: 600;
+  color: var(--neon-blue);
+}
+
+.journey-dot {
+  position: absolute;
+  top: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--neon-blue);
+  box-shadow: 0 0 10px rgba(0, 191, 255, 0.7);
+}
+
+.journey-content {
+  width: calc(50% - 50px);
+  margin-left: 1.5rem;
+}
+
+.journey-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.journey-description {
   font-size: 0.875rem;
   color: #a6a6a6;
 }
@@ -997,6 +1145,23 @@ img {
   
   .team-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Journey responsive - left and right alternating pattern */
+  .journey-event:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+
+  .journey-event:nth-child(even) .journey-date {
+    text-align: left;
+    padding-right: 0;
+    padding-left: 1.5rem;
+  }
+
+  .journey-event:nth-child(even) .journey-content {
+    margin-left: 0;
+    margin-right: 1.5rem;
+    text-align: right;
   }
 }
 

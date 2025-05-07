@@ -17,6 +17,15 @@
         <div class="logo-text">MPA</div>
       </a>
 
+      <!-- Search functionality -->
+      <div class="search-container">
+        <input type="text" id="search-input" class="search-input" placeholder="Search...">
+        <div class="search-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </div>
+        <div id="search-results" class="search-results hidden"></div>
+      </div>
+
       <!-- Desktop Navigation -->
       <div class="desktop-nav">
         <a href="index.html" class="nav-item">
@@ -138,6 +147,66 @@
             </div>
           </div>
 
+          <!-- Journey Timeline -->
+          <div class="neon-card about-section">
+            <div class="card-header">
+              <h2 class="card-title">Our Journey</h2>
+            </div>
+            <div class="card-content">
+              <div class="journey-timeline">
+                <!-- Event 1 -->
+                <div class="journey-event">
+                  <div class="journey-date">2018</div>
+                  <div class="journey-dot"></div>
+                  <div class="journey-content">
+                    <h3 class="journey-title">Community Founded</h3>
+                    <p class="journey-description">MPA community is established with a small Discord server and the first version of the launcher.</p>
+                  </div>
+                </div>
+                
+                <!-- Event 2 -->
+                <div class="journey-event">
+                  <div class="journey-date">2019</div>
+                  <div class="journey-dot"></div>
+                  <div class="journey-content">
+                    <h3 class="journey-title">First Tournament</h3>
+                    <p class="journey-description">We organized our first community tournament with players from around the world.</p>
+                  </div>
+                </div>
+                
+                <!-- Event 3 -->
+                <div class="journey-event">
+                  <div class="journey-date">2021</div>
+                  <div class="journey-dot"></div>
+                  <div class="journey-content">
+                    <h3 class="journey-title">Launcher V5.0</h3>
+                    <p class="journey-description">Released a completely redesigned launcher with modern UI and improved connectivity.</p>
+                  </div>
+                </div>
+                
+                <!-- Event 4 -->
+                <div class="journey-event">
+                  <div class="journey-date">2023</div>
+                  <div class="journey-dot"></div>
+                  <div class="journey-content">
+                    <h3 class="journey-title">Map Editor Release</h3>
+                    <p class="journey-description">Launched our custom map editor tool, allowing the community to create their own maps.</p>
+                  </div>
+                </div>
+                
+                <!-- Event 5 -->
+                <div class="journey-event">
+                  <div class="journey-date">2025</div>
+                  <div class="journey-dot"></div>
+                  <div class="journey-content">
+                    <h3 class="journey-title">Launcher V9.0</h3>
+                    <p class="journey-description">Latest major release with enhanced graphics and support for modern systems.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="neon-card about-section">
             <div class="card-header">
               <h2 class="card-title">Meet The Team</h2>
@@ -145,7 +214,7 @@
             <div class="card-content">
               <div class="team-grid">
                 <!-- Team Member 1 -->
-                <div class="team-member">
+                <div class="team-member neon-card">
                   <div class="team-avatar">
                     <img src="https://via.placeholder.com/150" alt="Alex" class="avatar">
                   </div>
@@ -155,7 +224,7 @@
                 </div>
 
                 <!-- Team Member 2 -->
-                <div class="team-member">
+                <div class="team-member neon-card">
                   <div class="team-avatar">
                     <img src="https://via.placeholder.com/150" alt="Sarah" class="avatar">
                   </div>
@@ -165,7 +234,7 @@
                 </div>
 
                 <!-- Team Member 3 -->
-                <div class="team-member">
+                <div class="team-member neon-card">
                   <div class="team-avatar">
                     <img src="https://via.placeholder.com/150" alt="Marcus" class="avatar">
                   </div>
@@ -175,7 +244,7 @@
                 </div>
 
                 <!-- Team Member 4 -->
-                <div class="team-member">
+                <div class="team-member neon-card">
                   <div class="team-avatar">
                     <img src="https://via.placeholder.com/150" alt="Elena" class="avatar">
                   </div>
