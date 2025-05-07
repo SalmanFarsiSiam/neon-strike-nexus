@@ -32,9 +32,6 @@ const Hero = () => {
               <span className="text-xs opacity-80 ml-1">({currentVersion})</span>
             </Button>
           </div>
-          
-          {/* Additional decorative elements */}
-          <div className="absolute -bottom-24 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-navy z-10"></div>
         </div>
       </div>
     </section>
