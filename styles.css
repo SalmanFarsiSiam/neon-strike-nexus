@@ -1,3 +1,4 @@
+
 /* Base Styles */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
@@ -191,50 +192,38 @@ img {
   color: var(--neon-blue);
 }
 
-/* Maps search functionality */
+/* Search functionality */
 .search-container {
   position: relative;
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto 2rem;
+  margin-left: auto;
+  margin-right: 1rem;
 }
 
-.search-box {
-  position: relative;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 191, 255, 0.3);
-  border-radius: 100px;
-  padding: 0.5rem 1rem;
-  box-shadow: 0 0 15px rgba(0, 191, 255, 0.2);
-  transition: all 0.3s ease;
-}
-
-.search-box:focus-within {
-  border-color: var(--neon-blue);
-  box-shadow: 0 0 20px rgba(0, 191, 255, 0.4);
-}
-
-.search-box svg {
-  margin-right: 0.75rem;
-  color: var(--neon-blue);
-  min-width: 18px;
-}
-
-#map-search-input {
-  background: transparent;
-  border: none;
+.search-input {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  padding: 0.5rem 1rem 0.5rem 2.5rem;
   color: white;
-  font-size: 1rem;
-  width: 100%;
-  outline: none;
+  width: 200px;
+  font-size: 0.875rem;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s;
 }
 
-#map-search-input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+.search-input:focus {
+  outline: none;
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 0 2px rgba(0, 191, 255, 0.2);
+  width: 300px;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 0.75rem;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .search-results {
@@ -248,6 +237,32 @@ img {
   overflow: hidden;
   z-index: 50;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.search-result-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  transition: background-color 0.3s;
+}
+
+.search-result-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.search-result-title {
+  color: white;
+}
+
+.search-result-arrow {
+  color: var(--neon-blue);
+}
+
+.search-no-results {
+  padding: 0.75rem 1rem;
+  color: var(--muted-foreground);
+  text-align: center;
 }
 
 /* Hero Section */
@@ -1093,4 +1108,129 @@ img {
 }
 
 /* Responsive Design */
-@media (min-width: 640px)
+@media (min-width: 640px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+  
+  .page-title {
+    font-size: 3rem;
+  }
+  
+  .card-actions {
+    justify-content: flex-start;
+  }
+  
+  .download-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .download-title-wrapper {
+    margin-bottom: 0;
+  }
+  
+  .tools-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .requirements-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .maps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Journey responsive - left and right alternating pattern */
+  .journey-event:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+
+  .journey-event:nth-child(even) .journey-date {
+    text-align: left;
+    padding-right: 0;
+    padding-left: 1.5rem;
+  }
+
+  .journey-event:nth-child(even) .journey-content {
+    margin-left: 0;
+    margin-right: 1.5rem;
+    text-align: right;
+  }
+}
+
+@media (min-width: 768px) {
+  .desktop-nav {
+    display: flex;
+  }
+  
+  .mobile-menu-button {
+    display: none;
+  }
+  
+  .hero-bg-blue {
+    width: 400px;
+    height: 400px;
+  }
+  
+  .hero-bg-purple {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .hero-title {
+    font-size: 3.75rem;
+  }
+  
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .step-content-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .step-content-grid.reverse {
+    direction: rtl;
+  }
+  
+  .step-content-grid.reverse > * {
+    direction: ltr;
+  }
+  
+  .tools-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .community-links {
+    justify-content: flex-start;
+  }
+  
+  .footer-content {
+    grid-template-columns: 2fr repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-title {
+    font-size: 4.5rem;
+  }
+  
+  .features-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .maps-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .team-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
