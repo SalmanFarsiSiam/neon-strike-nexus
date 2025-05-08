@@ -116,9 +116,20 @@
           </p>
         </div>
 
-        <div class="maps-grid">
+        <!-- Search Bar -->
+        <div class="maps-search-container">
+          <input type="text" id="maps-search" class="maps-search-input" placeholder="Search maps by name or author...">
+          <svg class="maps-search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </div>
+
+        <!-- No Maps Found Message -->
+        <div id="no-maps-found" class="no-maps-found hidden">
+          <p>No maps found matching your search criteria.</p>
+        </div>
+
+        <div class="maps-grid" id="maps-grid">
           <!-- Map 1 -->
-          <div class="neon-card map-card">
+          <div class="neon-card map-card" data-map-name="Downtown Raid" data-map-author="JetSpy">
             <div class="map-image-container">
               <img src="https://via.placeholder.com/600x300" alt="Downtown Raid" class="map-image">
             </div>
@@ -140,7 +151,7 @@
           </div>
 
           <!-- Map 2 -->
-          <div class="neon-card map-card">
+          <div class="neon-card map-card" data-map-name="Desert Compound" data-map-author="AgentX">
             <div class="map-image-container">
               <img src="https://via.placeholder.com/600x300" alt="Desert Compound" class="map-image">
             </div>
@@ -162,7 +173,7 @@
           </div>
 
           <!-- Map 3 -->
-          <div class="neon-card map-card">
+          <div class="neon-card map-card" data-map-name="Snow Fortress" data-map-author="FrostByte">
             <div class="map-image-container">
               <img src="https://via.placeholder.com/600x300" alt="Snow Fortress" class="map-image">
             </div>
@@ -184,7 +195,7 @@
           </div>
 
           <!-- Map 4 -->
-          <div class="neon-card map-card">
+          <div class="neon-card map-card" data-map-name="Jungle Ops" data-map-author="GreenZone">
             <div class="map-image-container">
               <img src="https://via.placeholder.com/600x300" alt="Jungle Ops" class="map-image">
             </div>

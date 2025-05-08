@@ -56,64 +56,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Search functionality
-  const searchInput = document.getElementById('search-input');
-  const searchResults = document.getElementById('search-results');
-  
-  if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
+  // Maps page search functionality
+  const mapsSearch = document.getElementById('maps-search');
+  const mapCards = document.querySelectorAll('.map-card');
+  const mapsGrid = document.getElementById('maps-grid');
+  const noMapsFound = document.getElementById('no-maps-found');
+
+  if (mapsSearch) {
+    mapsSearch.addEventListener('input', (e) => {
       const searchTerm = e.target.value.toLowerCase();
+      let visibleCards = 0;
       
-      // Clear previous results
-      if (searchResults) {
-        searchResults.innerHTML = '';
-      }
-      
-      // Show/hide search results container
-      if (searchTerm.length > 2 && searchResults) {
-        searchResults.classList.remove('hidden');
+      mapCards.forEach(card => {
+        const mapName = card.getAttribute('data-map-name').toLowerCase();
+        const mapAuthor = card.getAttribute('data-map-author').toLowerCase();
         
-        // Add some dummy search results
-        if (searchTerm.length > 2) {
-          const pages = [
-            { title: 'Home', url: 'index.html' },
-            { title: 'Downloads', url: 'downloads.html' },
-            { title: 'How to Setup', url: 'setup.html' },
-            { title: 'FAQ', url: 'faq.html' },
-            { title: 'Maps', url: 'maps.html' },
-            { title: 'About', url: 'about.html' },
-          ];
-          
-          const filteredPages = pages.filter(page => page.title.toLowerCase().includes(searchTerm));
-          
-          if (filteredPages.length > 0) {
-            filteredPages.forEach(page => {
-              const resultItem = document.createElement('a');
-              resultItem.href = page.url;
-              resultItem.className = 'search-result-item';
-              resultItem.innerHTML = `
-                <span class="search-result-title">${page.title}</span>
-                <span class="search-result-arrow">→</span>
-              `;
-              searchResults.appendChild(resultItem);
-            });
-          } else {
-            const noResult = document.createElement('div');
-            noResult.className = 'search-no-results';
-            noResult.textContent = 'No results found';
-            searchResults.appendChild(noResult);
-          }
+        if (mapName.includes(searchTerm) || mapAuthor.includes(searchTerm) || searchTerm === '') {
+          card.classList.remove('hidden');
+          visibleCards++;
+        } else {
+          card.classList.add('hidden');
         }
-      } else if (searchResults) {
-        searchResults.classList.add('hidden');
+      });
+      
+      // Show/hide "No maps found" message
+      if (visibleCards === 0) {
+        noMapsFound.classList.remove('hidden');
+      } else {
+        noMapsFound.classList.add('hidden');
       }
     });
     
-    // Close search results when clicking outside
-    document.addEventListener('click', (e) => {
-      if (searchResults && searchInput && !searchInput.contains(e.target) && !searchResults.contains(e.target)) {
-        searchResults.classList.add('hidden');
-      }
+    // Add focus effect
+    mapsSearch.addEventListener('focus', () => {
+      document.querySelector('.maps-search-container').classList.add('focus');
+    });
+    
+    mapsSearch.addEventListener('blur', () => {
+      document.querySelector('.maps-search-container').classList.remove('focus');
     });
   }
 });
