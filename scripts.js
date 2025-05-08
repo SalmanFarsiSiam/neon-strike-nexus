@@ -59,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Maps page search functionality
   const mapsSearch = document.getElementById('maps-search');
   const mapCards = document.querySelectorAll('.map-card');
-  const mapsGrid = document.getElementById('maps-grid');
   const noMapsFound = document.getElementById('no-maps-found');
 
   if (mapsSearch) {
@@ -80,20 +79,22 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       
       // Show/hide "No maps found" message
-      if (visibleCards === 0) {
-        noMapsFound.classList.remove('hidden');
+      if (visibleCards === 0 && searchTerm !== '') {
+        if (noMapsFound) noMapsFound.classList.remove('hidden');
       } else {
-        noMapsFound.classList.add('hidden');
+        if (noMapsFound) noMapsFound.classList.add('hidden');
       }
     });
     
     // Add focus effect
     mapsSearch.addEventListener('focus', () => {
-      document.querySelector('.maps-search-container').classList.add('focus');
+      const container = document.querySelector('.maps-search-container');
+      if (container) container.classList.add('focus');
     });
     
     mapsSearch.addEventListener('blur', () => {
-      document.querySelector('.maps-search-container').classList.remove('focus');
+      const container = document.querySelector('.maps-search-container');
+      if (container) container.classList.remove('focus');
     });
   }
 });

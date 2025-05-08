@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Download, Eye, Star } from "lucide-react";
+import { Download, Eye, Search, Star } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
@@ -49,7 +49,7 @@ const MapsPage = () => {
       downloads: 8700,
       rating: 4.5,
       category: "stealth",
-      description: "Dense jungle with hidden paths and enemy encampments.",
+      description: "Dense jungle environment with hidden paths and enemy encampments.",
     },
     {
       id: 5,
@@ -75,7 +75,8 @@ const MapsPage = () => {
 
   const filteredMaps = maps.filter(map => {
     const matchesSearch = map.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                         map.creator.toLowerCase().includes(searchTerm.toLowerCase());
+                         map.creator.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         map.description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesFilter = activeFilter === "all" || map.category === activeFilter;
     
     return matchesSearch && matchesFilter;
@@ -92,14 +93,19 @@ const MapsPage = () => {
         </div>
 
         <div className="flex flex-col md:flex-row gap-4 mb-8 items-center">
-          <Input
-            type="text"
-            placeholder="Search maps..."
-            className="max-w-md"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <div className="flex gap-2">
+          <div className="relative w-full max-w-md">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <Search className="h-5 w-5 text-neon-blue" />
+            </div>
+            <Input
+              type="text"
+              placeholder="Search maps by name, creator or description..."
+              className="pl-10 bg-transparent border-neon-blue border-2 rounded-full shadow-[0_0_15px_rgba(0,191,255,0.3)] focus:shadow-[0_0_25px_rgba(0,191,255,0.5)] transition-all"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+          <div className="flex gap-2 flex-wrap justify-center">
             <Button 
               variant={activeFilter === "all" ? "default" : "outline"}
               onClick={() => setActiveFilter("all")}
