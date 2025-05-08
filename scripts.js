@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Search functionality for navbar
+  // Search functionality
   const searchInput = document.getElementById('search-input');
   const searchResults = document.getElementById('search-results');
   
@@ -113,38 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', (e) => {
       if (searchResults && searchInput && !searchInput.contains(e.target) && !searchResults.contains(e.target)) {
         searchResults.classList.add('hidden');
-      }
-    });
-  }
-
-  // Maps page search functionality
-  const mapSearchInput = document.getElementById('map-search-input');
-  const mapsGrid = document.getElementById('maps-grid');
-  const noMapsFound = document.getElementById('no-maps-found');
-  const mapCards = document.querySelectorAll('.map-card');
-  
-  if (mapSearchInput) {
-    mapSearchInput.addEventListener('input', (e) => {
-      const searchTerm = e.target.value.toLowerCase();
-      let hasVisibleMaps = false;
-      
-      mapCards.forEach(card => {
-        const mapName = card.getAttribute('data-map-name').toLowerCase();
-        const mapCreator = card.getAttribute('data-map-creator').toLowerCase();
-        
-        if (mapName.includes(searchTerm) || mapCreator.includes(searchTerm) || searchTerm === '') {
-          card.style.display = 'block';
-          hasVisibleMaps = true;
-        } else {
-          card.style.display = 'none';
-        }
-      });
-      
-      // Show/hide no results message
-      if (hasVisibleMaps) {
-        noMapsFound.classList.add('hidden');
-      } else {
-        noMapsFound.classList.remove('hidden');
       }
     });
   }
